@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubestudy
+  labels:
+    app: kube-study1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kube-study1
+  template:
+    metadata:
+      labels:
+        app: kube-study1
+    spec:
+      containers:
+      - name: firstcontainer
+        image: docker.io/<docker-username>/<docker-public-repo>:kube-study
+        resources:
+          requests:
+            cpu: 25m
+            memory: 64Mi
+          limits:
+            cpu: 410m
+            memory: 512Mi
+        ports:
+        - containerPort: 8080

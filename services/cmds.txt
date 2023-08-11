@@ -1,0 +1,15 @@
+kubectl apply -f ns1.yaml
+
+kubectl apply -f service1.yaml -n my-ns1
+
+kubectl apply -f deploy1.yaml -n my-ns1
+
+kubectl get namespaces
+
+kubectl get EndpointSlices -n my-ns1 -o wide
+
+kubectl get pods -n my-ns1 -o wide
+
+kubectl get services -n my-ns1 -o wide
+
+kubectl describe services -n my-ns1
