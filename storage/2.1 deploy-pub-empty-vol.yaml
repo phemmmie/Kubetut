@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubestudy
+  labels:
+    app: kube-study1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-study1
+  template:
+    metadata:
+      labels:
+        app: kube-study1
+    spec:
+      containers:
+      - name: firstcontainer
+        image: docker.io/<docker-username>/<docker-public-repo>:kube-study-vol-job
+        command: ['sh','-c',  "echo Started application; java -jar /kube-trng-job.jar;sleep 300; echo Finished application"]
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: log-volume
+          mountPath: /log
+      volumes:
+      - name: log-volume
+        emptyDir: {}
